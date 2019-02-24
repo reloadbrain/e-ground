@@ -39,7 +39,6 @@ public class Customer extends BaseEntity {
     /**
      * Field of customer email.
      */
-    @Column(unique = true)
     @Email
     @NotNull
     private String email;
@@ -56,7 +55,7 @@ public class Customer extends BaseEntity {
      */
     @NotNull
     @Column(unique = true)
-    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")
+    @Pattern(regexp = "^[0-9]{1,9}?[-\\s/0-9]*$")
     private String phoneNumber;
 
     /**

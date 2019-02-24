@@ -47,7 +47,7 @@ public class CustomerDto implements BaseEntityDto {
      * Field of customer number
      */
     @NotNull
-    @Pattern(regexp = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")
+    @Pattern(regexp = "^[0-9]{1,9}?[-\\s/0-9]*$")
     private String phoneNumber;
 
     public CustomerDto() {

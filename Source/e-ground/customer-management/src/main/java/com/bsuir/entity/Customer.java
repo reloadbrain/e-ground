@@ -55,7 +55,6 @@ public class Customer extends BaseEntity {
      */
     @NotNull
     @Column(unique = true)
-    @Pattern(regexp = "^[0-9]{1,9}?[-\\s/0-9]*$")
     private String phoneNumber;
 
     /**

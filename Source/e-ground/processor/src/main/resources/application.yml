@@ -15,4 +15,4 @@ inventory:
 message-management:
   host: http://localhost
   port: 8084
-  url: ${customer-management.host}:${customer-management.port}
+  url: ${message-management.host}:${message-management.port}

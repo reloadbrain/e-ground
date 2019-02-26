@@ -1,17 +1,12 @@
-package com.bsuir.dto;
+package com.bsuir.dto.customer;
 
+import com.bsuir.dto.BaseEntityDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.util.UUID;
 
-/**
- * Class of Customer Data Transfer Object. Used to transfer data between application subsystems.
- *
- * @author Stsiapan Balashenka
- * @version 1.0
- */
 @Getter
 @Setter
 public class CustomerDto implements BaseEntityDto {
@@ -47,6 +42,7 @@ public class CustomerDto implements BaseEntityDto {
      * Field of customer number
      */
     @NotNull
+
     private String phoneNumber;
 
     public CustomerDto() {

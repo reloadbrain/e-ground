@@ -52,7 +52,7 @@ public class OrderController {
      * @return founded object or NullPointerException
      */
     @GetMapping(path = "/{id}")
-    public OrderDto find(@PathVariable("id") UUID id) {
+    public OrderDto getById(@PathVariable("id") UUID id) {
         return orderService.findById(id);
     }
 
@@ -62,18 +62,8 @@ public class OrderController {
      * @return founded objects
      */
     @GetMapping
-    public List<OrderDto> findAll() {
+    public List<OrderDto> getAll() {
         return orderService.findAll();
-    }
-
-    /**
-     * Method that finds all objects.
-     *
-     * @return founded objects
-     */
-    @GetMapping(path = "/emails/{email}")
-    public List<OrderDto> findAllByEmail(@PathVariable("email") String email) {
-        return orderService.findAllByEmail(email);
     }
 
     /**

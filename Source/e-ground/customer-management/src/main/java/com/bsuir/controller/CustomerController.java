@@ -56,28 +56,6 @@ public class CustomerController {
     }
 
     /**
-     * Method that finds an object.
-     *
-     * @param email UUID of the object to be found
-     * @return founded object or NullPointerException
-     */
-    @GetMapping(path = "/emails/{email}")
-    public CustomerDto findByEmail(@PathVariable("email") String email) {
-        return customerService.findByEmail(email);
-    }
-
-    /**
-     * Method that finds an object.
-     *
-     * @param phoneNumber the object to be found
-     * @return founded object or NullPointerException
-     */
-    @GetMapping(path = "/numbers/{number}")
-    public CustomerDto findByPhoneNumber(@PathVariable("number") String phoneNumber) {
-        return customerService.findByPhoneNumber(phoneNumber);
-    }
-
-    /**
      * Method that finds all objects.
      *
      * @return founded objects

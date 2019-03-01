@@ -57,23 +57,6 @@ public class DefaultCategoryService implements CategoryService {
     }
 
     /**
-     * Method that save List of Category objects in database.
-     *
-     * @param categoriesDto data transfer objects
-     * @return created list of objects of Category class
-     */
-    @Override
-    public List<CategoryDto> createAll(List<CategoryDto> categoriesDto) {
-        List<Category> categories = converter.toCategories(categoriesDto);
-        Iterable<Category> saveCategories = categoryRepository.saveAll(categories);
-        List<Category> createdCategories = new ArrayList<>();
-        for (Category category : saveCategories) {
-            createdCategories.add(category);
-        }
-        return converter.toCategoriesDto(createdCategories);
-    }
-
-    /**
      * Method that finds an object in database.
      *
      * @param id Long of the object to be found

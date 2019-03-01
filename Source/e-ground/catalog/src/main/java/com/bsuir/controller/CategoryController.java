@@ -45,24 +45,13 @@ public class CategoryController {
     }
 
     /**
-     * Method that converts a DTO List to class objects and create them.
-     *
-     * @param categoriesDto data transfer objects
-     * @return created list of objects of Category class
-     */
-    @PostMapping(path = "/all")
-    public List<CategoryDto> createAll(@Validated @RequestBody List<CategoryDto> categoriesDto) {
-        return categoryService.createAll(categoriesDto);
-    }
-
-    /**
      * Method that finds an object.
      *
      * @param id Long of the object to be found
      * @return founded object or NullPointerException
      */
     @GetMapping(path = "/{id}")
-    public CategoryDto findById(@PathVariable("id") UUID id) {
+    public CategoryDto getById(@PathVariable("id") UUID id) {
         return categoryService.findById(id);
     }
 
@@ -72,7 +61,7 @@ public class CategoryController {
      * @return founded objects
      */
     @GetMapping
-    public List<CategoryDto> findAll() {
+    public List<CategoryDto> getAll() {
         return categoryService.findAll();
     }
 

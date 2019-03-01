@@ -66,35 +66,13 @@ public class OfferController {
     }
 
     /**
-     * Method that finds Offer object by Price.
-     *
-     * @param price parameter to be searched
-     * @return List of founded objects
-     */
-    @GetMapping(path = "/prices/{price}")
-    public List<OfferDto> findByPrice(@PathVariable("price") String price) {
-        return offerService.findAllByPrice(price);
-    }
-
-    /**
-     * Method that finds Offer object by Category.
-     *
-     * @param category parameter to be searched
-     * @return List of founded objects
-     */
-    @GetMapping(path = "/categories/{category}")
-    public List<OfferDto> findByCategory(@PathVariable("category") String category) {
-        return offerService.findAllByCategory(category);
-    }
-
-    /**
      * Method that finds Offer object by Long.
      *
      * @param id parameter to be searched
      * @return List of founded objects
      */
     @GetMapping(path = "/{id}")
-    public OfferDto findById(@PathVariable("id") UUID id) {
+    public OfferDto getById(@PathVariable("id") UUID id) {
         return offerService.findById(id);
     }
 
@@ -104,7 +82,7 @@ public class OfferController {
      * @return founded objects
      */
     @GetMapping
-    public List<OfferDto> findAll() {
+    public List<OfferDto> getAll() {
         return offerService.findAll();
     }
 
@@ -121,7 +99,7 @@ public class OfferController {
     }
 
     @GetMapping(path = "/filter")
-    public List<OfferDto> findAllByFilter(@RequestParam(value = "category", required = false) String category,
+    public List<OfferDto> getAllByFilter(@RequestParam(value = "category", required = false) String category,
                                           @RequestParam(value = "priceFrom", required = false) String priceFrom,
                                           @RequestParam(value = "priceTo", required = false) String priceTo) {
         return offerService.findAllByFilter(category, priceFrom, priceTo);

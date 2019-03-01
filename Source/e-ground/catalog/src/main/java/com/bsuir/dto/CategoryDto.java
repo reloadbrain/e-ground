@@ -1,5 +1,6 @@
 package com.bsuir.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +14,8 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
-@Getter
-@Setter
-public class CategoryDto implements BaseEntityDto {
+@Data
+public class CategoryDto {
     @Null
     private UUID id;
 
@@ -27,10 +27,5 @@ public class CategoryDto implements BaseEntityDto {
 
     public CategoryDto() {
 
-    }
-
-    public CategoryDto(UUID id, String name) {
-        this.id = id;
-        this.name = name;
     }
 }

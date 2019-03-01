@@ -43,27 +43,4 @@ public class Offer extends BaseEntity {
     public Offer() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Offer offer = (Offer) o;
-        return Objects.equals(name, offer.name) &&
-                Objects.equals(category, offer.category) &&
-                Objects.equals(price, offer.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name, category, price);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Offer.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
-                .add("category=" + category)
-                .add("price=" + price)
-                .toString();
-    }
 }

@@ -1,5 +1,6 @@
 package com.bsuir.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Basic;
@@ -21,6 +22,7 @@ import java.util.StringJoiner;
  */
 @Data
 @Entity
+@Builder
 @Table(name = "customers")
 public class Customer extends BaseEntity {
     /**
@@ -43,6 +45,9 @@ public class Customer extends BaseEntity {
     @NotNull
     private String email;
 
+    @NotNull
+    private String password;
+
     /**
      * Field of customer age.
      */
@@ -55,6 +60,7 @@ public class Customer extends BaseEntity {
      */
     @NotNull
     @Column(unique = true)
+    @Pattern(regexp = "^\\+375(29|33|44)\\d{7}$")
     private String phoneNumber;
 
     /**

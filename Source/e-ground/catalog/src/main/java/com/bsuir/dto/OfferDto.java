@@ -1,12 +1,10 @@
 package com.bsuir.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +14,8 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
-@Getter
-@Setter
-public class OfferDto implements BaseEntityDto {
+@Data
+public class OfferDto {
     @Null
     private UUID id;
 
@@ -43,12 +40,5 @@ public class OfferDto implements BaseEntityDto {
 
     public OfferDto() {
 
-    }
-
-    public OfferDto(UUID id, String name, String category, Integer price, List<String> tags) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.price = price;
     }
 }

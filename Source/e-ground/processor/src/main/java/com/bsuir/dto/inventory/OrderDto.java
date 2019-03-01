@@ -1,27 +1,21 @@
 package com.bsuir.dto.inventory;
 
-import com.bsuir.dto.BaseEntityDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
-@Getter
-@Setter
-public class OrderDto implements BaseEntityDto {
+@Data
+@Builder
+public class OrderDto {
     private UUID id;
 
     @NotNull
-    @Pattern(regexp = "^\\d+")
-    private String orderNumber;
-
-    /**
-     * Field of order status.
-     */
-    @NotNull
-    @Pattern(regexp = "DONE|IN_PROGRESS")
-    private String status;
+    private UUID customerId;
 
     @NotNull
     private String name;

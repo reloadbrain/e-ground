@@ -16,10 +16,6 @@ public interface OfferService {
 
     List<OfferDto> findAll();
 
-    List<OfferDto> findAllByPrice(String price);
-
-    List<OfferDto> findAllByCategory(String category);
-
     List<OfferDto> findAllByFilter(String category, String priceFrom, String priceTo);
 
     OfferDto findById(UUID id);

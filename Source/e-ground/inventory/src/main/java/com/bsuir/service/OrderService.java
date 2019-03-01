@@ -18,8 +18,6 @@ public interface OrderService {
 
     OrderDto findById(UUID id);
 
-    List<OrderDto> findAllByEmail(String email);
-
     OrderDto update(OrderDto orderDto);
 
     void delete(UUID id);

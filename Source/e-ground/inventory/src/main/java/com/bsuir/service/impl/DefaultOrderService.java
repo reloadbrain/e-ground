@@ -68,16 +68,6 @@ public class DefaultOrderService implements OrderService {
         return converter.toOrdersDto(createdOrders);
     }
 
-    @Override
-    public List<OrderDto> findAllByEmail(String email) {
-        Iterable<Order> saveOrders = orderRepository.findAllByEmail(email);
-        List<Order> createdOrders = new ArrayList<>();
-        for (Order order : saveOrders) {
-            createdOrders.add(order);
-        }
-        return converter.toOrdersDto(createdOrders);
-    }
-
     /**
      * Method that finds an object in database.
      *

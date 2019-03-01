@@ -16,19 +16,11 @@ public interface ProcessorService {
 
     CustomerDto getCustomerByEmail(String email);
 
-    List<OrderDto> getOrdersByEmail(String email);
-
-    String getOrdersTotalPriceByEmail(String email);
-
     List<OfferDto> getOffersByFilter(String category, String priceFrom, String priceTo);
 
     List<OrderDto> getOrdersByStatus(String status);
 
-    OrderDto getOrder(String orderNumber);
-
     OfferDto getOrderById(UUID id);
-
-    OrderDto payOrder(String email, String orderNumber);
 
     List<OrderDto> getAllOrders();
 

@@ -63,30 +63,6 @@ public class DefaultOfferService implements OfferService {
     }
 
     /**
-     * Method that finds Offer object by Price in database.
-     *
-     * @param value parameter to be searched
-     * @return list of founded objects
-     */
-    @Override
-    public List<OfferDto> findAllByPrice(String value) {
-        double priceValue = Double.valueOf(value);
-
-        return converter.toOffersDto(offerRepository.findAllByPrice(priceValue));
-    }
-
-    /**
-     * Method that finds Offer object by Category in database.
-     *
-     * @param category parameter to be searched
-     * @return list of founded objects
-     */
-    @Override
-    public List<OfferDto> findAllByCategory(String category) {
-        return converter.toOffersDto(offerRepository.findAllByCategory(categoryRepository.findFirstByName(category)));
-    }
-
-    /**
      * Method that finds all objects in database.
      *
      * @return founded objects

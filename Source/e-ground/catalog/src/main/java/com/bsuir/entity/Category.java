@@ -44,25 +44,4 @@ public class Category extends BaseEntity {
     public Category(String name) {
         this.name = name;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return Objects.equals(name, category.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Category.class.getSimpleName() + "[", "]")
-                .add("name='" + name + "'")
-                .add("offers=" + offers)
-                .toString();
-    }
 }

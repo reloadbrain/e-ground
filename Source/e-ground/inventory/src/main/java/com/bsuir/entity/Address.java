@@ -1,5 +1,6 @@
 package com.bsuir.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import java.util.StringJoiner;
  */
 @Data
 @Entity
+@Builder
 public class Address extends BaseEntity {
     /**
      * Field of city.
@@ -47,30 +49,5 @@ public class Address extends BaseEntity {
      * Constructor without params that create object without initialization fields.
      */
     public Address() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return Objects.equals(city, address.city) &&
-                Objects.equals(street, address.street) &&
-                Objects.equals(houseNumber, address.houseNumber);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), city, street, houseNumber);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Address.class.getSimpleName() + "[", "]")
-                .add("city='" + city + "'")
-                .add("street='" + street + "'")
-                .add("houseNumber='" + houseNumber + "'")
-                .add("order=" + order)
-                .toString();
     }
 }

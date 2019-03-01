@@ -1,6 +1,7 @@
 package com.bsuir.dto.catalog;
 
-import com.bsuir.dto.BaseEntityDto;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +9,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Getter
-@Setter
-public class OfferDto implements BaseEntityDto {
+@Data
+@Builder
+public class OfferDto {
     private UUID id;
 
     /**

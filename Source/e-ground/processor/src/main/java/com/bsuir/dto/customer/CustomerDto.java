@@ -1,15 +1,19 @@
 package com.bsuir.dto.customer;
 
-import com.bsuir.dto.BaseEntityDto;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
-@Getter
-@Setter
-public class CustomerDto implements BaseEntityDto {
+@Data
+@Builder
+public class CustomerDto {
     private UUID id;
 
     /**
@@ -42,7 +46,7 @@ public class CustomerDto implements BaseEntityDto {
      * Field of customer number
      */
     @NotNull
-
+    @Pattern(regexp = "^\\+375(29|33|44)\\d{7}$")
     private String phoneNumber;
 
     public CustomerDto() {

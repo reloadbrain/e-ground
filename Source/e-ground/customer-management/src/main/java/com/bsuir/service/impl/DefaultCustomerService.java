@@ -6,8 +6,10 @@ import com.bsuir.exception.EntityNotFoundException;
 import com.bsuir.repository.CustomerRepository;
 import com.bsuir.service.CustomerService;
 import com.bsuir.service.util.CustomerConverter;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;

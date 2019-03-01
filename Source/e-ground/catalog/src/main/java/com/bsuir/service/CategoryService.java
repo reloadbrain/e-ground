@@ -14,8 +14,6 @@ import java.util.UUID;
 public interface CategoryService {
     CategoryDto create(CategoryDto categoryDto);
 
-    List<CategoryDto> createAll(List<CategoryDto> categoriesDto);
-
     CategoryDto findById(UUID id);
 
     List<CategoryDto> findAll();

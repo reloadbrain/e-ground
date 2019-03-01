@@ -1,11 +1,9 @@
 package com.bsuir.service.util.impl;
 
-import com.bsuir.dto.AddressDto;
 import com.bsuir.dto.OrderDto;
 import com.bsuir.entity.Address;
 import com.bsuir.entity.Order;
 import com.bsuir.service.util.OrderConverter;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -31,17 +29,19 @@ public class DefaultOrderConverter implements OrderConverter {
         Order order = new Order();
         if (orderDto != null) {
             Address address = new Address();
-            BeanUtils.copyProperties(orderDto.getDeliveryAddress(), address);
 
+            address.setCity(orderDto.getCity());
+            address.setStreet(orderDto.getStreet());
+            address.setHouseNumber(orderDto.getHouseNumber());
+            order.setDeliveryAddress(address);
+
+            order.setCustomerId(orderDto.getCustomerId());
             order.setId(orderDto.getId());
             order.setName(orderDto.getName());
-            order.setStatus(orderDto.getStatus());
             order.setEmail(orderDto.getEmail());
             order.setTotalPrice(orderDto.getTotalPrice());
             order.setOrderItemCount(orderDto.getOrderItemCount());
             order.setDate(LocalDateTime.parse(orderDto.getDate()));
-            order.setDeliveryAddress(address);
-            order.setOrderNumber(orderDto.getOrderNumber());
         }
         return order;
     }
@@ -51,18 +51,18 @@ public class DefaultOrderConverter implements OrderConverter {
     public OrderDto toOrderDto(Order order) {
         OrderDto orderDto = new OrderDto();
         if (order != null) {
-            AddressDto addressDto = new AddressDto();
-            BeanUtils.copyProperties(order.getDeliveryAddress(), addressDto);
 
+
+            orderDto.setCustomerId(order.getCustomerId());
             orderDto.setId(order.getId());
             orderDto.setName(order.getName());
             orderDto.setDate(order.getDate().format(ISO_LOCAL_DATE_TIME));
             orderDto.setOrderItemCount(order.getOrderItemCount());
-            orderDto.setStatus(order.getStatus());
             orderDto.setEmail(order.getEmail());
             orderDto.setTotalPrice(order.getTotalPrice());
-            orderDto.setDeliveryAddress(addressDto);
-            orderDto.setOrderNumber(order.getOrderNumber());
+            orderDto.setCity(order.getDeliveryAddress().getCity());
+            orderDto.setStreet(order.getDeliveryAddress().getStreet());
+            orderDto.setHouseNumber(order.getDeliveryAddress().getHouseNumber());
         }
         return orderDto;
     }

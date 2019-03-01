@@ -1,21 +1,12 @@
 package com.bsuir.dto.processor;
 
-import com.bsuir.dto.BaseEntityDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.util.UUID;
 
-@Getter
-@Setter
-public class OperationParameterDto implements BaseEntityDto {
+@Data
+public class OperationParameterDto {
     @NotNull
-    @Email
-    private String email;
-
-    @NotNull
-    @Pattern(regexp = "^\\d+")
-    private String orderNumber;
+    private UUID id;
 }

@@ -1,14 +1,14 @@
 ## Главная страница
-![Главная страница](/MainPage.png)  
+![Главная страница](MainPage.png)  
 ## Меню 
-![Меню](/Menu.png)  
+![Меню](Menu.png)  
 ## Страница товара
-![Страница товара](/Product.png)  
+![Страница товара](Product.png)  
 ## Категория 
-![Категория](/ProductsCategory.png)  
+![Категория](ProductsCategory.png)  
 ## Профиль
-![Профиль](/Profile.png)  
+![Профиль](Profile.png)  
 ## Избранное 
-![Избранное](/Favorites.png)  
+![Избранное](Favorites.png)  
 ## Диалоги
-![Диалоги](/Dialogs.png)  
+![Диалоги](Dialogs.png)  

@@ -1,12 +1,15 @@
 package com.bsuir.controller;
 
 import com.bsuir.dto.OrderDto;
+import com.bsuir.entity.Order;
 import com.bsuir.service.OrderService;
 import io.swagger.annotations.ApiParam;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +19,7 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/v1/inventory/orders")
 public class OrderController {
@@ -23,6 +27,8 @@ public class OrderController {
      * Field of Order Service.
      */
     private final OrderService orderService;
+
+    private ModelMapper modelMapper;
 
     /**
      * Constructor that accepts a object OrderService class.
@@ -32,6 +38,7 @@ public class OrderController {
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
+        this.modelMapper = new ModelMapper();
     }
 
     /**
@@ -41,8 +48,12 @@ public class OrderController {
      * @return created object of Order class
      */
     @PostMapping
-    public OrderDto create(@ApiParam(name = "date", value = "Example date: 2018-12-12T15:15:15")@Validated @RequestBody OrderDto orderDto) {
-        return orderService.create(orderDto);
+    public OrderDto create(@ApiParam(name = "date", value = "Example date: 2018-12-12T15:15:15") @Validated @RequestBody OrderDto orderDto) {
+        Order order = new Order();
+        modelMapper.map(orderDto, order);
+        OrderDto orderDtoTemp = new OrderDto();
+        modelMapper.map(orderService.create(order), orderDtoTemp);
+        return orderDtoTemp;
     }
 
     /**
@@ -53,7 +64,16 @@ public class OrderController {
      */
     @GetMapping(path = "/{id}")
     public OrderDto getById(@PathVariable("id") UUID id) {
-        return orderService.findById(id);
+        OrderDto orderDtoTemp = new OrderDto();
+        modelMapper.map(orderService.findById(id), orderDtoTemp);
+        return orderDtoTemp;
+    }
+
+    @GetMapping(path = "/customers/{customerId}")
+    public List<OrderDto> getByIdCustomerId(@PathVariable("customerId") UUID customerId) {
+        List<OrderDto> orderDtoTemp = new ArrayList<>();
+        toOrdersDtoList(orderService.findByCustomerId(customerId), orderDtoTemp);
+        return orderDtoTemp;
     }
 
     /**
@@ -63,7 +83,10 @@ public class OrderController {
      */
     @GetMapping
     public List<OrderDto> getAll() {
-        return orderService.findAll();
+        List<OrderDto> ordersDtoTemp = new ArrayList<>();
+        List<Order> orders = orderService.findAll();
+        toOrdersDtoList(orders, ordersDtoTemp);
+        return ordersDtoTemp;
     }
 
     /**
@@ -74,7 +97,11 @@ public class OrderController {
      */
     @PutMapping
     public OrderDto update(@Validated @RequestBody OrderDto orderDto) {
-        return orderService.update(orderDto);
+        Order order = new Order();
+        modelMapper.map(orderDto, order);
+        OrderDto orderDtoTemp = new OrderDto();
+        modelMapper.map(orderService.update(order), orderDtoTemp);
+        return orderDtoTemp;
     }
 
     /**
@@ -85,5 +112,13 @@ public class OrderController {
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable("id") UUID id) {
         orderService.delete(id);
+    }
+
+    private void toOrdersDtoList(List<Order> orders, List<OrderDto> ordersDto) {
+        for (Order order : orders) {
+            OrderDto orderDto = new OrderDto();
+            modelMapper.map(order, orderDto);
+            ordersDto.add(orderDto);
+        }
     }
 }

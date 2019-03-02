@@ -1,11 +1,14 @@
 package com.bsuir.controller;
 
 import com.bsuir.dto.CategoryDto;
+import com.bsuir.entity.Category;
 import com.bsuir.service.CategoryService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +18,7 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/v1/catalog/categories")
 public class CategoryController {
@@ -22,6 +26,8 @@ public class CategoryController {
      * Field of Category Service.
      */
     private final CategoryService categoryService;
+
+    private ModelMapper modelMapper;
 
     /**
      * Constructor that accepts a object CategoryService class.
@@ -31,6 +37,7 @@ public class CategoryController {
     @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
+        this.modelMapper = new ModelMapper();
     }
 
     /**
@@ -41,7 +48,11 @@ public class CategoryController {
      */
     @PostMapping
     public CategoryDto create(@Validated @RequestBody CategoryDto categoryDto) {
-        return categoryService.create(categoryDto);
+        Category categoryTemp = new Category();
+        modelMapper.map(categoryDto, categoryTemp);
+        CategoryDto categoryDtoTemp = new CategoryDto();
+        modelMapper.map(categoryService.create(categoryTemp), categoryDtoTemp);
+        return categoryDtoTemp;
     }
 
     /**
@@ -52,7 +63,9 @@ public class CategoryController {
      */
     @GetMapping(path = "/{id}")
     public CategoryDto getById(@PathVariable("id") UUID id) {
-        return categoryService.findById(id);
+        CategoryDto categoryDtoTemp = new CategoryDto();
+        modelMapper.map(categoryService.findById(id), categoryDtoTemp);
+        return categoryDtoTemp;
     }
 
     /**
@@ -62,7 +75,16 @@ public class CategoryController {
      */
     @GetMapping
     public List<CategoryDto> getAll() {
-        return categoryService.findAll();
+        List<CategoryDto> categoriesDtoTemp = new ArrayList<>();
+        List<Category> categoriesTemp = categoryService.findAll();
+
+        for (Category category : categoriesTemp) {
+            CategoryDto categoryDto = new CategoryDto();
+            modelMapper.map(category, categoryDto);
+            categoriesDtoTemp.add(categoryDto);
+        }
+
+        return categoriesDtoTemp;
     }
 
     /**
@@ -73,7 +95,11 @@ public class CategoryController {
      */
     @PutMapping
     public CategoryDto update(@Validated @RequestBody CategoryDto categoryDto) {
-        return categoryService.update(categoryDto);
+        Category categoryTemp = new Category();
+        modelMapper.map(categoryDto, categoryTemp);
+        CategoryDto categoryDtoTemp = new CategoryDto();
+        modelMapper.map(categoryService.update(categoryTemp), categoryDtoTemp);
+        return categoryDtoTemp;
     }
 
     /**

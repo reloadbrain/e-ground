@@ -1,13 +1,11 @@
 package com.bsuir.service.impl;
 
-import com.bsuir.dto.OfferDto;
 import com.bsuir.entity.Category;
 import com.bsuir.entity.Offer;
 import com.bsuir.exception.EntityNotFoundException;
 import com.bsuir.repository.CategoryRepository;
 import com.bsuir.repository.OfferRepository;
 import com.bsuir.service.OfferService;
-import com.bsuir.service.util.OfferConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * Class of offer service that allows you to work with offers and implements OfferService.
@@ -31,35 +28,21 @@ public class DefaultOfferService implements OfferService {
 
     private final CategoryRepository categoryRepository;
 
-    private final OfferConverter converter;
-
     @Autowired
-    public DefaultOfferService(OfferRepository offerRepository, CategoryRepository categoryRepository,
-                               OfferConverter converter) {
+    public DefaultOfferService(OfferRepository offerRepository, CategoryRepository categoryRepository) {
         this.offerRepository = offerRepository;
         this.categoryRepository = categoryRepository;
-        this.converter = converter;
     }
 
     /**
      * Method that save object in database.
      *
-     * @param offerDto object that needs to save
+     * @param offer object that needs to save
      * @return saved object of Offer class
      */
     @Override
-    public OfferDto create(OfferDto offerDto) {
-        Offer offer = converter.toOffer(offerDto);
-        Category category = categoryRepository.findFirstByName(offerDto.getCategory());
-        if (category == null || category.getName().equals(offer.getCategory().getName())) {
-            Category categorySave = categoryRepository.save(new Category(offerDto.getCategory()));
-            offer.setCategory(categorySave);
-        } else {
-            offer.setCategory(category);
-        }
-
-        Offer createdOffer = offerRepository.save(offer);
-        return converter.toOfferDto(createdOffer);
+    public Offer create(Offer offer) {
+        return offerRepository.save(offer);
     }
 
     /**
@@ -68,17 +51,17 @@ public class DefaultOfferService implements OfferService {
      * @return founded objects
      */
     @Override
-    public List<OfferDto> findAll() {
+    public List<Offer> findAll() {
         Iterable<Offer> saveOffer = offerRepository.findAll();
         List<Offer> createdOffers = new ArrayList<>();
         for (Offer offer : saveOffer) {
             createdOffers.add(offer);
         }
-        return converter.toOffersDto(createdOffers);
+        return createdOffers;
     }
 
     @Override
-    public List<OfferDto> findAllByFilter( String category, String priceFrom, String priceTo) {
+    public List<Offer> findAllByFilter(String category, String priceFrom, String priceTo) {
         Iterable<Offer> saveOffer;
 
         Category foundCategory = null;
@@ -105,7 +88,7 @@ public class DefaultOfferService implements OfferService {
             priceToTemp = Double.MAX_VALUE;
         }
 
-       if (category != null) {
+        if (category != null) {
             saveOffer = offerRepository.findAllByCategory(foundCategory);
         } else {
             saveOffer = offerRepository.findAll();
@@ -117,7 +100,7 @@ public class DefaultOfferService implements OfferService {
             }
         }
 
-        return converter.toOffersDto(foundOffers);
+        return foundOffers;
     }
 
     /**
@@ -127,19 +110,19 @@ public class DefaultOfferService implements OfferService {
      * @return list of founded objects
      */
     @Override
-    public OfferDto findById(UUID id) {
-        return converter.toOfferDto(offerRepository.findById(id).orElseThrow(NullPointerException::new));
+    public Offer findById(UUID id) {
+        return offerRepository.findById(id).orElseThrow(NullPointerException::new);
     }
 
     /**
      * Method that save updated object in database.
      *
-     * @param offerDto updated offer that needs to save
+     * @param offer updated offer that needs to save
      * @return updated and saved offer
      */
     @Override
-    public OfferDto update(OfferDto offerDto) {
-        return create(offerDto);
+    public Offer update(Offer offer) {
+        return create(offer);
     }
 
     /**
@@ -164,11 +147,11 @@ public class DefaultOfferService implements OfferService {
      * @return updated Offer
      */
     @Override
-    public OfferDto changeCategory(UUID offerId, String category) {
+    public Offer changeCategory(UUID offerId, String category) {
         Offer offer = offerRepository.findById(offerId).orElseThrow(NullPointerException::new);
         Category categoryByName = categoryRepository.findFirstByName(category);
         offer.setCategory(categoryByName);
         Offer savedOffer = offerRepository.save(offer);
-        return converter.toOfferDto(savedOffer);
+        return savedOffer;
     }
 }

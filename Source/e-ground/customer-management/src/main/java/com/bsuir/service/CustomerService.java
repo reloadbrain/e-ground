@@ -1,22 +1,18 @@
 package com.bsuir.service;
 
-import com.bsuir.dto.CustomerDto;
+import com.bsuir.entity.Customer;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface CustomerService {
-    CustomerDto create(CustomerDto customerDto);
+    Customer create(Customer customer);
 
-    CustomerDto findById(UUID id);
+    Customer findById(UUID id);
 
-    CustomerDto findByEmail(String email);
+    List<Customer> findAll();
 
-    CustomerDto findByPhoneNumber(String phoneNumber);
-
-    List<CustomerDto> findAll();
-
-    CustomerDto update(CustomerDto customerDto);
+    Customer update(Customer customer);
 
     void delete(UUID id);
 }

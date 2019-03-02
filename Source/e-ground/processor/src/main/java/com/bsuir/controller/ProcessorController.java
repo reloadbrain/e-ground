@@ -4,7 +4,6 @@ import com.bsuir.dto.catalog.OfferDto;
 import com.bsuir.dto.customer.CustomerDto;
 import com.bsuir.dto.inventory.OrderDto;
 import com.bsuir.dto.processor.CreateOrderParameterDto;
-import com.bsuir.dto.processor.OperationParameterDto;
 import com.bsuir.service.ProcessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +25,7 @@ public class ProcessorController {
 
     @PostMapping(path = "/orders")
     public OrderDto addToFavorites(@Validated @RequestBody CreateOrderParameterDto createOrderParameter) {
-        return processorService.createOrder(createOrderParameter);
+        return processorService.addToFavorite(createOrderParameter);
     }
 
     @PostMapping(path = "/customers")
@@ -34,31 +33,25 @@ public class ProcessorController {
         return processorService.createCustomer(customerDto);
     }
 
-    @GetMapping(path = "/customers/emails/{email}")
-    public CustomerDto getCustomersById(@PathVariable("email") String email) {
-        return processorService.getCustomerByEmail(email);
+    @PostMapping(path = "/offers")
+    public OfferDto createOffer(@Validated @RequestBody OfferDto offerDto) {
+        return processorService.createOffer(offerDto);
     }
 
-    @GetMapping(path = "/orders/filter")
+    @GetMapping(path = "/offers/filter")
     public List<OfferDto> getOffersByFilter(@RequestParam(value = "category", required = false) String category,
                                             @RequestParam(value = "priceFrom", required = false) String priceFrom,
                                             @RequestParam(value = "priceTo", required = false) String priceTo) {
         return processorService.getOffersByFilter(category, priceFrom, priceTo);
     }
 
-    @GetMapping(path = "/orders/statuses/{status}")
-    public List<OrderDto> getOrdersByStatus(@PathVariable("status") String status) {
-        return processorService.getOrdersByStatus(status);
+    @GetMapping(path = "/customers/{id}")
+    public CustomerDto getCustomersById(@PathVariable("id") UUID id) {
+        return processorService.getCustomerById(id);
     }
 
     @GetMapping(path = "/orders/{id}")
-    public OfferDto getOrderById(@PathVariable("id") UUID id) {
-        return processorService.getOrderById(id);
+    public List<OrderDto> getOrderByCustomerId(@PathVariable("id") UUID id) {
+        return processorService.getOrderByCustomerId(id);
     }
-
-    @DeleteMapping(path = "/orders")
-    public void delete(@Validated @RequestBody OperationParameterDto operationParameterDto) {
-        processorService.delete(operationParameterDto);
-    }
-
 }

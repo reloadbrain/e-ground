@@ -1,11 +1,14 @@
 package com.bsuir.controller;
 
 import com.bsuir.dto.CustomerDto;
+import com.bsuir.entity.Customer;
 import com.bsuir.service.CustomerService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,6 +18,7 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/v1/customer-management/customers")
 public class CustomerController {
@@ -22,6 +26,8 @@ public class CustomerController {
      * Field of customer service.
      */
     private final CustomerService customerService;
+
+    private ModelMapper modelMapper;
 
     /**
      * Constructor that accepts a object CustomerService class.
@@ -31,6 +37,7 @@ public class CustomerController {
     @Autowired
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
+        this.modelMapper = new ModelMapper();
     }
 
     /**
@@ -41,7 +48,11 @@ public class CustomerController {
      */
     @PostMapping
     public CustomerDto create(@Validated @RequestBody CustomerDto customerDto) {
-        return customerService.create(customerDto);
+        Customer customer = new Customer();
+        modelMapper.map(customerDto, customer);
+        CustomerDto customerDtoTemp = new CustomerDto();
+        modelMapper.map(customerService.create(customer), customerDtoTemp);
+        return customerDtoTemp;
     }
 
     /**
@@ -51,8 +62,10 @@ public class CustomerController {
      * @return founded object or NullPointerException
      */
     @GetMapping(path = "/{id}")
-    public CustomerDto find(@PathVariable("id") UUID id) {
-        return customerService.findById(id);
+    public CustomerDto getById(@PathVariable("id") UUID id) {
+        CustomerDto customerDtoTemp = new CustomerDto();
+        modelMapper.map(customerService.findById(id), customerDtoTemp);
+        return customerDtoTemp;
     }
 
     /**
@@ -61,8 +74,11 @@ public class CustomerController {
      * @return founded objects
      */
     @GetMapping
-    public List<CustomerDto> findAll() {
-        return customerService.findAll();
+    public List<CustomerDto> getAll() {
+        List<CustomerDto> customersDtoTemp = new ArrayList<>();
+        List<Customer> customers = customerService.findAll();
+        toCustomersDtoList(customers, customersDtoTemp);
+        return customersDtoTemp;
     }
 
     /**
@@ -73,7 +89,12 @@ public class CustomerController {
      */
     @PutMapping
     public CustomerDto update(@Validated @RequestBody CustomerDto customerDto) {
-        return customerService.update(customerDto);
+        Customer customer = new Customer();
+        modelMapper.map(customerDto, customer);
+        CustomerDto customerDtoTemp = new CustomerDto();
+        modelMapper.map(customerService.update(customer), customerDtoTemp);
+        return customerDtoTemp;
+
     }
 
     /**
@@ -84,5 +105,13 @@ public class CustomerController {
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable("id") UUID id) {
         customerService.delete(id);
+    }
+
+    private void toCustomersDtoList(List<Customer> customers, List<CustomerDto> customersDto) {
+        for (Customer customer : customers) {
+            CustomerDto customerDto = new CustomerDto();
+            modelMapper.map(customer, customerDto);
+            customersDto.add(customerDto);
+        }
     }
 }

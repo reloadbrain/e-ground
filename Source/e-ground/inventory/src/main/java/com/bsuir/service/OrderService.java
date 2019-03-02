@@ -1,6 +1,6 @@
 package com.bsuir.service;
 
-import com.bsuir.dto.OrderDto;
+import com.bsuir.entity.Order;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,13 +12,15 @@ import java.util.UUID;
  * @version 1.0
  */
 public interface OrderService {
-    OrderDto create(OrderDto orderDto);
+    Order create(Order order);
 
-    List<OrderDto> findAll();
+    List<Order> findAll();
 
-    OrderDto findById(UUID id);
+    Order findById(UUID id);
 
-    OrderDto update(OrderDto orderDto);
+    List<Order> findByCustomerId(UUID customerId);
+
+    Order update(Order order);
 
     void delete(UUID id);
 }

@@ -1,6 +1,6 @@
 package com.bsuir.service;
 
-import com.bsuir.dto.OfferDto;
+import com.bsuir.entity.Offer;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,17 +12,17 @@ import java.util.UUID;
  * @version 1.0
  */
 public interface OfferService {
-    OfferDto create(OfferDto offerDto);
+    Offer create(Offer offer);
 
-    List<OfferDto> findAll();
+    List<Offer> findAll();
 
-    List<OfferDto> findAllByFilter(String category, String priceFrom, String priceTo);
+    List<Offer> findAllByFilter(String category, String priceFrom, String priceTo);
 
-    OfferDto findById(UUID id);
+    Offer findById(UUID id);
 
-    OfferDto update(OfferDto offerDto);
+    Offer update(Offer offer);
 
     void delete(UUID id);
 
-    OfferDto changeCategory(UUID offerId, String category);
+    Offer changeCategory(UUID offerId, String category);
 }

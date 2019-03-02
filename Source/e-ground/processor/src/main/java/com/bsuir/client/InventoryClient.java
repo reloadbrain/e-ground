@@ -1,5 +1,6 @@
-package com.bsuir.service.client;
+package com.bsuir.client;
 
+import com.bsuir.dto.catalog.OfferDto;
 import com.bsuir.dto.inventory.OrderDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 public class InventoryClient {
@@ -20,7 +18,7 @@ public class InventoryClient {
 
     private static final String API_V1_INVENTORY_ORDERS = "api/v1/inventory/orders";
 
-    private static final String API_V1_INVENTORY_ORDERS_EMAIL = "/api/v1/inventory/orders/emails/{email}";
+    private static final String API_V1_INVENTORY_ORDERS_CUSTOMER_ID = "/api/v1/inventory/orders/customers/";
 
     private final RestTemplate restTemplate;
 
@@ -46,30 +44,16 @@ public class InventoryClient {
         return responseEntity.getBody();
     }
 
-    public List<OrderDto> getOrdersDto(String email) {
-        LOGGER.info("Start method InventoryClient.getOrdersDto Email = {}", email);
-
-        StringBuilder finalUrl = new StringBuilder(baseUrl);
-        finalUrl.append(API_V1_INVENTORY_ORDERS_EMAIL);
-
-        LOGGER.info("Final URL: {}", finalUrl.toString());
-
-        ResponseEntity<OrderDto[]> responseEntity = restTemplate.getForEntity(finalUrl.toString(), OrderDto[].class, email);
-
-        LOGGER.info("Size Orders DTO: {}", Objects.requireNonNull(responseEntity.getBody()).length);
-
-        return Arrays.asList(responseEntity.getBody());
-    }
-
-    public List<OrderDto> getOrdersDto() {
-        LOGGER.info("Start method InventoryClient.getOrdersDto");
-
-        StringBuilder finalUrl = new StringBuilder(baseUrl);
-        finalUrl.append(API_V1_INVENTORY_ORDERS);
-
-        LOGGER.info("Final URL: {}", finalUrl.toString());
+    public List<OrderDto> getOrdersDto(UUID id) {
+        LOGGER.info("Start method InventoryClient.getOrdersDto ID = {}", id);
 
         HttpHeaders headers = new HttpHeaders();
+        StringBuilder finalUrl = new StringBuilder(baseUrl);
+        finalUrl.append(API_V1_INVENTORY_ORDERS_CUSTOMER_ID);
+        finalUrl.append(id);
+
+        LOGGER.info("Final URL: {}", finalUrl.toString());
+
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<String> entity = new HttpEntity<>("", headers);
 

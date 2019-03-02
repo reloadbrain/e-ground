@@ -1,4 +1,4 @@
-package com.bsuir.service.client;
+package com.bsuir.client;
 
 import com.bsuir.dto.catalog.OfferDto;
 import org.slf4j.Logger;
@@ -28,6 +28,21 @@ public class CatalogClient {
     public CatalogClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
+    public OfferDto save(OfferDto offerDto) {
+        LOGGER.info("Start method save CatalogClient.OfferDto: {}", offerDto);
+
+        StringBuilder finalUrl = new StringBuilder(baseUrl);
+        finalUrl.append(API_CATALOG_OFFERS);
+
+        LOGGER.info("Final URL: {}", finalUrl.toString());
+
+        ResponseEntity<OfferDto> responseEntity = restTemplate.postForEntity(finalUrl.toString(), offerDto, OfferDto.class);
+
+        LOGGER.info("Offer DTO: {}", responseEntity.getBody());
+        return responseEntity.getBody();
+    }
+
 
     public OfferDto getOfferDto(UUID id) {
         LOGGER.info("Start method CatalogClient.getOfferDto Id = {}", id);

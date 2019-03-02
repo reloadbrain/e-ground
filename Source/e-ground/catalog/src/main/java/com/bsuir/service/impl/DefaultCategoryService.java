@@ -1,10 +1,8 @@
 package com.bsuir.service.impl;
 
-import com.bsuir.dto.CategoryDto;
 import com.bsuir.entity.Category;
 import com.bsuir.repository.CategoryRepository;
 import com.bsuir.service.CategoryService;
-import com.bsuir.service.util.CategoryConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -29,31 +27,25 @@ public class DefaultCategoryService implements CategoryService {
      */
     private final CategoryRepository categoryRepository;
 
-    private final CategoryConverter converter;
-
     /**
      * Constructor that accepts a object CategoryRepository class.
      *
      * @param categoryRepository object of CategoryRepository class
      */
     @Autowired
-    public DefaultCategoryService(CategoryRepository categoryRepository, CategoryConverter converter) {
+    public DefaultCategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.converter = converter;
     }
 
     /**
      * Method that save Category in database.
      *
-     * @param categoryDto object that needs to save
+     * @param category object that needs to save
      * @return saved object of Category class
      */
     @Override
-    public CategoryDto create(CategoryDto categoryDto) {
-        Category category = converter.toCategory(categoryDto);
-        Category createdCategory = categoryRepository.save(category);
-
-        return converter.toCategoryDto(createdCategory);
+    public Category create(Category category) {
+        return categoryRepository.save(category);
     }
 
     /**
@@ -63,8 +55,8 @@ public class DefaultCategoryService implements CategoryService {
      * @return founded object or NullPointerException
      */
     @Override
-    public CategoryDto findById(UUID id) {
-        return converter.toCategoryDto(categoryRepository.findById(id).orElseThrow(NullPointerException::new));
+    public Category findById(UUID id) {
+        return categoryRepository.findById(id).orElseThrow(NullPointerException::new);
     }
 
     /**
@@ -73,24 +65,24 @@ public class DefaultCategoryService implements CategoryService {
      * @return founded objects
      */
     @Override
-    public List<CategoryDto> findAll() {
+    public List<Category> findAll() {
         Iterable<Category> saveCategories = categoryRepository.findAll();
         List<Category> createdCategories = new ArrayList<>();
         for (Category category : saveCategories) {
             createdCategories.add(category);
         }
-        return converter.toCategoriesDto(createdCategories);
+        return createdCategories;
     }
 
     /**
      * Method that save updated object.
      *
-     * @param categoryDto updated category that needs to save
+     * @param category updated category that needs to save
      * @return updated and saved category
      */
     @Override
-    public CategoryDto update(CategoryDto categoryDto) {
-        return create(categoryDto);
+    public Category update(Category category) {
+        return create(category);
     }
 
     /**

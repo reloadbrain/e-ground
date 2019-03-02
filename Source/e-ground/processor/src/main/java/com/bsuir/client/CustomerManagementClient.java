@@ -1,4 +1,4 @@
-package com.bsuir.service.client;
+package com.bsuir.client;
 
 import com.bsuir.dto.customer.CustomerDto;
 import org.slf4j.Logger;
@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
+import java.util.UUID;
 
 @Component
 public class CustomerManagementClient {
     private static final Logger LOGGER = LoggerFactory.getLogger(InventoryClient.class);
 
-    private static final String API_V1_CUSTOMER_MANAGEMENT = "api/v1/customer-management/customers";
-
-    private static final String API_V1_CUSTOMER_MANAGEMENT_EMAIL = "api/v1/customer-management/customers/emails/";
+    private static final String API_V1_CUSTOMER_MANAGEMENT = "api/v1/customer-management/customers/";
 
     private final RestTemplate restTemplate;
 
@@ -43,8 +42,8 @@ public class CustomerManagementClient {
         return responseEntity.getBody();
     }
 
-    public CustomerDto getCustomersDto(String email) {
-        LOGGER.info("Start method InventoryClient.getCustomersDto Email = {}", email);
+    public CustomerDto getCustomerDto(UUID id) {
+        LOGGER.info("Start method InventoryClient.getCustomersDto ID = {}", id);
 
 
         HttpHeaders headers = new HttpHeaders();
@@ -52,8 +51,8 @@ public class CustomerManagementClient {
         HttpEntity<String> entity = new HttpEntity<>("", headers);
 
         StringBuilder finalUrl = new StringBuilder(baseUrl);
-        finalUrl.append(API_V1_CUSTOMER_MANAGEMENT_EMAIL);
-        finalUrl.append(email);
+        finalUrl.append(API_V1_CUSTOMER_MANAGEMENT);
+        finalUrl.append(id);
 
         LOGGER.info("Final URL: {}", finalUrl.toString());
 

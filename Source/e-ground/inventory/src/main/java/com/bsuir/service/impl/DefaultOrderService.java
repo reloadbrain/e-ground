@@ -1,11 +1,9 @@
 package com.bsuir.service.impl;
 
-import com.bsuir.dto.OrderDto;
 import com.bsuir.entity.Order;
 import com.bsuir.exception.EntityNotFoundException;
 import com.bsuir.repository.OrderRepository;
 import com.bsuir.service.OrderService;
-import com.bsuir.service.util.OrderConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,29 +26,25 @@ public class DefaultOrderService implements OrderService {
      */
     private final OrderRepository orderRepository;
 
-    private final OrderConverter converter;
-
     /**
      * Constructor that accepts a object OrderRepository class.
      *
      * @param orderRepository object of OrderRepository class
      */
     @Autowired
-    public DefaultOrderService(OrderRepository orderRepository,
-                               OrderConverter converter) {
+    public DefaultOrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.converter = converter;
     }
 
     /**
      * Method that save Order in database.
      *
-     * @param orderDto object that needs to save
+     * @param order object that needs to save
      * @return saved object of Order class
      */
     @Override
-    public OrderDto create(OrderDto orderDto) {
-        return converter.toOrderDto(orderRepository.save(converter.toOrder(orderDto)));
+    public Order create(Order order) {
+        return orderRepository.save(order);
     }
 
     /**
@@ -59,13 +53,13 @@ public class DefaultOrderService implements OrderService {
      * @return founded objects
      */
     @Override
-    public List<OrderDto> findAll() {
+    public List<Order> findAll() {
         Iterable<Order> saveOrders = orderRepository.findAll();
         List<Order> createdOrders = new ArrayList<>();
         for (Order order : saveOrders) {
             createdOrders.add(order);
         }
-        return converter.toOrdersDto(createdOrders);
+        return createdOrders;
     }
 
     /**
@@ -75,19 +69,23 @@ public class DefaultOrderService implements OrderService {
      * @return founded object or NullPointerException
      */
     @Override
-    public OrderDto findById(UUID id) {
-        return converter.toOrderDto(orderRepository.findById(id).orElseThrow(NullPointerException::new));
+    public Order findById(UUID id) {
+        return orderRepository.findById(id).orElseThrow(NullPointerException::new);
     }
 
+    @Override
+    public List<Order> findByCustomerId(UUID customerId) {
+        return orderRepository.findAllByCustomerId(customerId);
+    }
     /**
      * Method that save updated object.
      *
-     * @param orderDto updated order that needs to save
+     * @param order updated order that needs to save
      * @return updated and saved order
      */
     @Override
-    public OrderDto update(OrderDto orderDto) {
-        return create(orderDto);
+    public Order update(Order order) {
+        return create(order);
     }
 
     /**

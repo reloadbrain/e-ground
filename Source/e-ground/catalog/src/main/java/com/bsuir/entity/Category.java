@@ -9,8 +9,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.StringJoiner;
 
 /**
  * Class of offer category that extends BaseEntity class.

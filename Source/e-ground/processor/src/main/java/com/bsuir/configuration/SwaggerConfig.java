@@ -1,4 +1,4 @@
-package com.bsuir.config;
+package com.bsuir.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

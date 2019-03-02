@@ -12,7 +12,6 @@
         <module>catalog</module>
         <module>customer-management</module>
         <module>inventory</module>
-        <module>message-management</module>
         <module>processor</module>
     </modules>
 
@@ -60,6 +59,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.5</version>
         </dependency>
 
         <dependency>

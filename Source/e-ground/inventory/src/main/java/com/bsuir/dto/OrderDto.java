@@ -1,11 +1,11 @@
 package com.bsuir.dto;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
 /**
@@ -15,16 +15,11 @@ import java.util.UUID;
  * @version 1.0
  */
 @Data
-@Builder
 public class OrderDto {
     private UUID id;
 
     @NotNull
-    private String customerId;
-
-    @NotNull
-    @Pattern(regexp = "^\\d+")
-    private String orderNumber;
+    private UUID customerId;
 
     @NotNull
     private String name;
@@ -49,27 +44,6 @@ public class OrderDto {
     @NotNull
     @Min(0)
     private int orderItemCount;
-
-    /**
-     * Field of date.
-     */
-    @NotNull
-    private String date;
-
-    @NotNull
-    private String city;
-
-    /**
-     * Field of street.
-     */
-    @NotNull
-    private String street;
-
-    /**
-     * Field of house number.
-     */
-    @NotNull
-    private int houseNumber;
 
     public OrderDto() {
 

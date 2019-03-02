@@ -1,9 +1,6 @@
 package com.bsuir.dto.customer;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -12,7 +9,6 @@ import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
 @Data
-@Builder
 public class CustomerDto {
     private UUID id;
 
@@ -41,6 +37,9 @@ public class CustomerDto {
     @NotNull
     @Min(1)
     private int age;
+
+    @NotNull
+    private String password;
 
     /**
      * Field of customer number

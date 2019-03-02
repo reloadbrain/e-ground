@@ -1,6 +1,6 @@
 package com.bsuir.service;
 
-import com.bsuir.dto.CategoryDto;
+import com.bsuir.entity.Category;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,13 +12,13 @@ import java.util.UUID;
  * @version 1.0
  */
 public interface CategoryService {
-    CategoryDto create(CategoryDto categoryDto);
+    Category create(Category categoryDto);
 
-    CategoryDto findById(UUID id);
+    Category findById(UUID id);
 
-    List<CategoryDto> findAll();
+    List<Category> findAll();
 
-    CategoryDto update(CategoryDto CategoryDto);
+    Category update(Category category);
 
     void delete(UUID id);
 }

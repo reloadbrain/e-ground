@@ -23,11 +23,4 @@ public abstract class BaseEntity implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    @Override
-    public String toString() {
-        return "BaseEntity{" +
-                "id=" + id.toString() +
-                '}';
-    }
 }

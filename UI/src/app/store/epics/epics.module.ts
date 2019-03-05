@@ -1,7 +1,10 @@
 import {NgModule} from '@angular/core';
+import {CatalogEpic} from './catalog.epic';
 
 @NgModule({
-  providers: [],
+  providers: [
+    CatalogEpic
+  ],
 })
 export class EpicsModule {
 }

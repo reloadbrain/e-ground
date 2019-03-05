@@ -1,4 +1,3 @@
-
 .example-card {
   width: 30%;
 }
@@ -9,7 +8,7 @@ mat-card {
   margin-bottom: 2%;
   margin-top: 2%;
   overflow-x:hidden;
-  height: 330px;
+  height: 400px;
 }
 .cut-long-text {
   white-space: nowrap;
@@ -18,7 +17,7 @@ mat-card {
 }
 
 .full-size {
-  height: 50%;
+  height: 70%;
   width: 100%;
   background-color: white;
 }
@@ -40,14 +39,12 @@ main {
   padding-left: 40px;
 }
 
-
 .box {
   overflow: hidden;
   height: 50px;
   width: 400px;
   line-height: 25px;
 }
-
 
 .box:before {
   content: "";
@@ -77,19 +74,9 @@ main {
   background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
 }
 
-.startup-toolbar{
-  background-color: transparent;
-  margin-top: 30px;
-  width: 80%;
-}
-.sortTypeSelect{
-  width:400px;
-}
-
 .buttonSearch{
   width: 250px;
 }
-
 
 mat-card::-webkit-scrollbar-track
 {

@@ -1,10 +1,12 @@
 import {CurrentUserState} from './reducers/current-user.reducer';
 import {UserSideNavState} from './reducers/user-side-nav.reducer';
+import {CatalogState} from './reducers/catalog.reducer';
 
 export interface AppState {
   readonly router?: string;
   readonly currentUserState?: CurrentUserState;
   readonly userSideNavState?: UserSideNavState;
+  readonly catalogState?: CatalogState;
   /*readonly startupsState?: StartupsState;
   readonly startupPageState?: StartupPageState;
   readonly router?: string;

@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {combineEpics} from 'redux-observable';
+import {CatalogEpic} from './catalog.epic';
 
 @Injectable()
 export class EpicService {
 
-  constructor() {
+  constructor(private catalogEpic: CatalogEpic) {
   }
 
   getEpics() {
-    return combineEpics();
+    return combineEpics(
+      this.catalogEpic.fetchOffers$
+    );
   }
 }

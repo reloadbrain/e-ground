@@ -32,6 +32,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { UserSidenavComponent } from './components/user-sidenav/user-sidenav.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -80,7 +81,8 @@ const customNotifierOptions: NotifierOptions = {
     HeaderComponent,
     FooterComponent,
     MainPageComponent,
-    UserSidenavComponent
+    UserSidenavComponent,
+    CatalogComponent
   ],
   imports: [
     BrowserModule,

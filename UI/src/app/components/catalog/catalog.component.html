@@ -1,0 +1,29 @@
+<main>
+  <ng-template #catalog>
+      <div *ngFor="let offer of offers">
+        <mat-card class="example-card">
+          <img mat-card-lg-image="" class="full-size" onError="this.src='/src/assets/images/defaultImageForItem.jpg';">
+          <mat-card-content>
+            <p align="center">
+              <a style="font-size: 17px">
+                {{startup.startupName}}
+              </a>
+            </p>
+            <p class="box">
+              {{startup.idea}}
+            </p>
+            <p>
+              <span style="font-size: 16px"> Needed: {{startup.sumOfInvestment}}$ </span>   &nbsp;<span style="font-size: 16px"> Created by: </span> <a routerLink="/account/{{startup.account.id}}" style="font-size: 16px">  {{startup.account.user.login}} </a>
+            </p>
+            <div *ngIf="!startup.nonBlock" style="color: red">
+              <ng-template ngxPermissionsOnly="ADMIN">  <button (click)="unBlockStartup(startup)"> Unblock Startup  </button></ng-template>
+              Стартап заблокирован
+            </div>
+            <div *ngIf="startup.nonBlock">
+              <ng-template ngxPermissionsOnly="ADMIN">  <button (click)="blockStartup(startup)"> Block Startup  </button></ng-template>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  </ng-template>
+</main>

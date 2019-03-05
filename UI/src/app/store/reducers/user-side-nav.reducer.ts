@@ -1,4 +1,6 @@
 import {Reducer} from 'redux';
+import {HIDE_USER_SIDE_NAV, SHOW_USER_SIDE_NAV} from '../actions/user-side-nav.actions';
+
 
 export interface UserSideNavState {
   readonly isOpened: boolean;
@@ -11,6 +13,16 @@ const INITIAL_STATE = {
 
 
 export const userSideNavReducer: Reducer<UserSideNavState> = (state: UserSideNavState = INITIAL_STATE, action): UserSideNavState => {
-    return state;
+    switch (action.type) {
+      case SHOW_USER_SIDE_NAV: {
+        return {...state, isOpened: true};
+      }
+      case HIDE_USER_SIDE_NAV: {
+        return {...state, isOpened: false};
+      }
+      default: {
+        return state;
+      }
+    }
   }
 ;

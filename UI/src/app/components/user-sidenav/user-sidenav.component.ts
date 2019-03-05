@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {AppState} from '../../store';
 import {User} from '../../model/User';
 import {isOpened} from '../../store/selectors/user-side-nav.selector';
+import {hideUserSideNavAction, showUserSideNavAction} from '../../store/actions/user-side-nav.actions';
 
 @Component({
   selector: 'app-user-sidenav',
@@ -17,28 +18,26 @@ export class UserSidenavComponent implements OnInit {
   @ViewChild('sidenav')
   nav: MatSidenav;
 
+
   @select(selectCurrentUser)
   currentUser: Observable<User>;
 
   @select(isOpened)
   opened: Observable<boolean>;
 
-  opened1: boolean;
-
   constructor(private ngRedux: NgRedux<AppState>) {
   }
 
   ngOnInit() {
-    this.opened1 = true;
   }
 
   open() {
     this.nav.toggle();
-    this.opened1 = true;
+    this.ngRedux.dispatch(showUserSideNavAction());
   }
 
   close() {
     this.nav.toggle();
-    this.opened1 = false;
+    this.ngRedux.dispatch(hideUserSideNavAction());
   }
 }

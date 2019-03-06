@@ -4,24 +4,26 @@
     </mat-spinner>
   </div>
   <ng-template #offers>
-    <div style="width: 90%" *ngIf="(offerList|async)?.length !== 0; else empty">
+    <div class="offers-list" *ngIf="(offerList|async)?.length !== 0; else empty">
       <div *ngFor="let offer of offerList | async">
-        <mat-card class="example-card">
-          <img mat-card-lg-image="" class="full-size" src="../../../assets/images/defaultImageForItem.jpg">
-          <mat-card-content>
-            <p align="center">
-              <a style="font-size: 17px">
-                {{offer.name}}
-              </a>
-            </p>
-            <p class="box">
-              {{offer.category}}
-            </p>
-            <p>
-              <span style="font-size: 16px"> Needed: {{offer.price}}$ </span> &nbsp;<span style="font-size: 16px"> Created by: </span>
-              <a style="font-size: 16px">  {{offer.id}} </a>
-            </p>
-          </mat-card-content>
+        <mat-card class="offer-card">
+          <div class="offer-card-content">
+            <img mat-card-lg-image class="offer-card-img" src="../../../assets/images/defaultImageForItem.jpg" alt="Кулити">
+            <div class="offer-card-text">
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <p>
+                  Название: {{offer.name}}
+                </p>
+                <p><b style="color: #87e876">
+                  Цена: {{offer.price}}
+                </b>
+                </p>
+              </div>
+              <span>
+                Категория: {{offer.category}}
+              </span>
+            </div>
+          </div>
         </mat-card>
       </div>
     </div>

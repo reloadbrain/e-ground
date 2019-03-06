@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {Offer} from '../model/Offer';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogService {
-  catalogUrl = '/api/catalog';
+  apiUrl = '/api/v1/processor';
 
   offers: Offer[] = [
     {id: '1', name: 'qwe1', price: '100', category: 'TOOLS'},
@@ -22,8 +23,13 @@ export class CatalogService {
   }
 
   getCatalogList(): Observable<Offer[]> {
-    /*return this.http.get<Offer[]>(`${this.startupUrl}/startup-list`)
-      .pipe(catchError((error: any) => throwError(error.error)));*/
-    return of(this.offers);
+    return this.http.get<Offer[]>(`${this.apiUrl}/offers/filter`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+    //return of(this.offers);
+  }
+
+  createOffer(offer: Offer): Observable<Offer> {
+    return this.http.post<Offer>(`${this.apiUrl}/offers`, offer)
+      .pipe(catchError((error: any) => throwError(error)));
   }
 }

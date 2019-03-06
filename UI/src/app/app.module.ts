@@ -33,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { UserSidenavComponent } from './components/user-sidenav/user-sidenav.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
+import { OfferEditComponent } from './components/offer-edit/offer-edit.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -82,7 +83,8 @@ const customNotifierOptions: NotifierOptions = {
     FooterComponent,
     MainPageComponent,
     UserSidenavComponent,
-    CatalogComponent
+    CatalogComponent,
+    OfferEditComponent
   ],
   imports: [
     BrowserModule,

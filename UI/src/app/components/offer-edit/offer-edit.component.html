@@ -1,0 +1,21 @@
+<main>
+  <form [formGroup]="offerForm">
+    <div class="edit-form">
+      <mat-form-field>
+        <mat-label> Offer name</mat-label>
+        <input matInput placeholder="Name" [formControlName]="'name'" maxlength="20" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <textarea matInput maxRows="5" placeholder="Category" [formControlName]="'category'" maxlength="150"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Price" [formControlName]="'price'" maxlength="8">
+      </mat-form-field>
+      <button mat-raised-button class="btnControl" (click)="createOffer()">
+        Create
+      </button>
+    </div>
+  </form>
+</main>

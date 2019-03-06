@@ -1,6 +1,7 @@
 import {Reducer} from 'redux';
 import {Offer} from '../../model/Offer';
 import {FETCH_OFFERS, FETCH_OFFERS_FAILED, FETCH_OFFERS_SUCCESS} from '../actions/catalog.actions';
+import {CREATE_OFFER, CREATE_OFFER_FAILED, CREATE_OFFER_SUCCESS} from '../actions/offer.actions';
 
 
 export interface CatalogState {
@@ -22,6 +23,17 @@ export const catalogReducer: Reducer<CatalogState> = (state: CatalogState = INIT
       return {...state, ...action.payload, isLoading: false};
     }
     case FETCH_OFFERS_FAILED: {
+      return {...state, isLoading: false};
+    }
+    case CREATE_OFFER: {
+      return {...state, isLoading: true};
+    }
+    case CREATE_OFFER_SUCCESS: {
+      const newOffer = action.payload.offer;
+      const updatedOffers = new Map(state.offers).set(newOffer.id, newOffer);
+      return {...state, offers: updatedOffers, isLoading: false};
+    }
+    case CREATE_OFFER_FAILED: {
       return {...state, isLoading: false};
     }
     default: {

@@ -2,7 +2,7 @@
   <!--<mat-sidenav #sidenav mode="side" *ngIf="currentUser|async" [(opened)]="opened">-->
   <mat-sidenav #sidenav mode="side">
     <ng-template [ngIf]="(opened|async)">
-      <p><a routerLink="/startup-edit"> Create startup </a></p>
+      <p><a routerLink="/offer-edit"> Create offer </a></p>
       <mat-divider></mat-divider>
       <p>
         <button mat-button (click)="close()" style="font-size: 15px"> Hide</button>

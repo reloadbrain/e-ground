@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
   currentUser: Observable<User>;
 
   navLinks = [{
-    path: '/main-page',
-    label: 'Main',
+    path: '/catalog',
+    label: 'Catalog',
     isActive: true
   }];
 

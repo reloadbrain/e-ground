@@ -1,6 +1,5 @@
 package com.bsuir.sdtt.client;
 
-import com.bsuir.sdtt.dto.catalog.OfferDto;
 import com.bsuir.sdtt.dto.customer.CustomerDto;
 import com.bsuir.sdtt.util.CustomerManagementClientProperty;
 import lombok.extern.slf4j.Slf4j;
@@ -50,13 +49,11 @@ public class CustomerManagementClient {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        HttpEntity<String> entity = new HttpEntity<>("", headers);
+        HttpEntity<CustomerDto> entity = new HttpEntity<>(customerDto, headers);
 
         ResponseEntity<CustomerDto> responseEntity = restTemplate.exchange(finalUrl.toString(), HttpMethod.PUT, entity, CustomerDto.class);
 
         log.info("Customer DTO: {}", responseEntity.getBody());
-
-        restTemplate.put(finalUrl.toString(), customerDto, OfferDto.class);
 
         return responseEntity.getBody();
     }

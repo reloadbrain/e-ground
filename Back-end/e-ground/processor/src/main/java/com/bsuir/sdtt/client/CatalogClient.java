@@ -46,9 +46,13 @@ public class CatalogClient {
         StringBuilder finalUrl = new StringBuilder(baseUrl);
         finalUrl.append(CatalogClientProperty.API_CATALOG_OFFERS);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        HttpEntity<OfferDto> entity = new HttpEntity<>(offerDto, headers);
+
         log.info("Final URL: {}", finalUrl.toString());
 
-        ResponseEntity<OfferDto> responseEntity = restTemplate.exchange(finalUrl.toString(), HttpMethod.PUT, getHttpEntityHeader(), OfferDto.class);
+        ResponseEntity<OfferDto> responseEntity = restTemplate.exchange(finalUrl.toString(), HttpMethod.PUT, entity, OfferDto.class);
 
         log.info("Offer DTO: {}", responseEntity.getBody());
 

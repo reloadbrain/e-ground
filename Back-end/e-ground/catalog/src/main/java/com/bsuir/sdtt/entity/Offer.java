@@ -31,7 +31,7 @@ public class Offer extends BaseEntity {
     /**
      * Field of Offer category.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @NotNull
     private Category category;
 

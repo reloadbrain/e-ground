@@ -18,7 +18,6 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class CategoryDto {
-    @Null
     private UUID id;
 
     /**

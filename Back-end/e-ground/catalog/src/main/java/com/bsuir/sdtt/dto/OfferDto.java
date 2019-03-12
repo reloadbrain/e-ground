@@ -19,7 +19,6 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 public class OfferDto {
-    @Null
     private UUID id;
 
     /**

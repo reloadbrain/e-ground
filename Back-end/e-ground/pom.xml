@@ -11,7 +11,7 @@
     <modules>
         <module>catalog</module>
         <module>customer-management</module>
-        <module>inventory</module>
+        <module>favourite-item-management</module>
         <module>processor</module>
     </modules>
 

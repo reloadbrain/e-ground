@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="catalog" />
+        <module name="customer-management" />
+        <module name="favourite-item-management" />
+        <module name="processor" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="catalog" target="1.8" />
+      <module name="customer-management" target="1.8" />
+      <module name="e-ground" target="1.8" />
+      <module name="favourite-item-management" target="1.8" />
+      <module name="processor" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="catalog" options="-parameters" />
+      <module name="customer-management" options="-parameters" />
+      <module name="favourite-item-management" options="-parameters" />
+      <module name="processor" options="-parameters" />
+    </option>
+  </component>
+</project>

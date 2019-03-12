@@ -95,8 +95,8 @@ catalog/catalog.iml
 catalog/target
 customer-management/customer-management.iml
 customer-management/target
-inventory/inventory.iml
-inventory/target
+favourite-item-management/favourite-item-management.iml
+favourite-item-management/target
 processor/processor.iml
 processor/target
 

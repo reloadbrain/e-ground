@@ -1,4 +1,4 @@
-package com.bsuir.sdtt.dto.inventory;
+package com.bsuir.sdtt.dto.favourite;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

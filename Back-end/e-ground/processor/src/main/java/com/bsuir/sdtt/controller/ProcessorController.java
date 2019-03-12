@@ -1,8 +1,9 @@
 package com.bsuir.sdtt.controller;
 
+import com.bsuir.sdtt.dto.catalog.CategoryDto;
 import com.bsuir.sdtt.dto.catalog.OfferDto;
 import com.bsuir.sdtt.dto.customer.CustomerDto;
-import com.bsuir.sdtt.dto.inventory.OrderDto;
+import com.bsuir.sdtt.dto.favourite.OrderDto;
 import com.bsuir.sdtt.dto.processor.CreateOrderParameterDto;
 import com.bsuir.sdtt.service.ProcessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,19 @@ public class ProcessorController {
         return processorService.createCustomer(customerDto);
     }
 
+    @PutMapping(path = "/customers")
+    public CustomerDto updateCustomer(@Validated @RequestBody CustomerDto customerDto) {
+        return processorService.updateCustomer(customerDto);
+    }
+
     @PostMapping(path = "/offers")
     public OfferDto createOffer(@Validated @RequestBody OfferDto offerDto) {
         return processorService.createOffer(offerDto);
+    }
+
+    @PutMapping(path = "/offers")
+    public OfferDto updateOffer(@Validated @RequestBody OfferDto offerDto) {
+        return processorService.updateOffer(offerDto);
     }
 
     @GetMapping(path = "/offers/filter")
@@ -58,5 +69,10 @@ public class ProcessorController {
     @GetMapping(path = "/orders/{id}")
     public List<OrderDto> getOrderByCustomerId(@PathVariable("id") UUID id) {
         return processorService.getOrderByCustomerId(id);
+    }
+
+    @GetMapping(path = "/categories}")
+    public List<CategoryDto> getAllCategories() {
+        return processorService.getAllCategories();
     }
 }

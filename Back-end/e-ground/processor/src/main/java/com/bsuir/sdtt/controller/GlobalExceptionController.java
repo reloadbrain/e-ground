@@ -1,14 +1,12 @@
 package com.bsuir.sdtt.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @ControllerAdvice(annotations = RestController.class)
+@Slf4j
 public class GlobalExceptionController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionController.class);
-
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
@@ -16,7 +14,7 @@ public class GlobalExceptionController {
         StringBuilder message = new StringBuilder("ERROR: ");
         message.append(exception.getMessage());
 
-        LOGGER.error("ERROR: ", exception);
+        log.error("ERROR: ", exception);
 
         return message.toString();
     }

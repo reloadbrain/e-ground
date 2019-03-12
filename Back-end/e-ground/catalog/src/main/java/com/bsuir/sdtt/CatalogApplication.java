@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  * @author Stsiapan Balashenka
  * @version 1.0
- * @since 18-12-2018
+ * @since 20-02-2019
  */
 @SpringBootApplication
 @EnableJpaRepositories

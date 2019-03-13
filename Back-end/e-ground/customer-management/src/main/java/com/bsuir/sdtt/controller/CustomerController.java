@@ -27,6 +27,9 @@ public class CustomerController {
      */
     private final CustomerService customerService;
 
+    /**
+     * Field of Model Mapper converter.
+     */
     private ModelMapper modelMapper;
 
     /**
@@ -106,7 +109,8 @@ public class CustomerController {
         customerService.delete(id);
     }
 
-    private void toCustomersDtoList(List<Customer> customers, List<CustomerDto> customersDto) {
+    private void toCustomersDtoList(List<Customer> customers,
+                                    List<CustomerDto> customersDto) {
         for (Customer customer : customers) {
             CustomerDto customerDto = new CustomerDto();
             modelMapper.map(customer, customerDto);

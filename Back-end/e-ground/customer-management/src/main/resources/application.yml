@@ -8,4 +8,8 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
+<<<<<<< HEAD
       ddl-auto: create
+=======
+      ddl-auto: create-drop
+>>>>>>> 9a6cef07cd1f440343e01b0a27b58250410d40a1

@@ -1,10 +1,13 @@
 package com.bsuir.sdtt.service.impl;
 
 import com.bsuir.sdtt.entity.Customer;
+import com.bsuir.sdtt.exception.EmailExistException;
 import com.bsuir.sdtt.exception.EntityNotFoundException;
 import com.bsuir.sdtt.repository.CustomerRepository;
 import com.bsuir.sdtt.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,6 +21,7 @@ import java.util.UUID;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
+@Slf4j
 @Service
 @Transactional
 public class DefaultCustomerService implements CustomerService {
@@ -26,14 +30,17 @@ public class DefaultCustomerService implements CustomerService {
      */
     private final CustomerRepository customerRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     /**
      * Constructor that accepts a object CustomerDao class.
      *
      * @param customerRepository object of CustomerRepository class
      */
     @Autowired
-    public DefaultCustomerService(CustomerRepository customerRepository) {
+    public DefaultCustomerService(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -44,7 +51,18 @@ public class DefaultCustomerService implements CustomerService {
      */
     @Override
     public Customer create(Customer customer) {
-        return customerRepository.save(customer);
+        String email = customer.getEmail();
+        try {
+            if(customerRepository.findByEmail(email).isPresent()) {
+                throw new EmailExistException("User with such email exist: " + email);
+            }
+            String password = passwordEncoder.encode(customer.getPassword());
+            customer.setPassword(password);
+            customerRepository.save(customer);
+        } catch(EmailExistException e) {
+            log.error("Such email exist exception", e);
+        }
+        return null;
     }
 
     /**
@@ -81,7 +99,7 @@ public class DefaultCustomerService implements CustomerService {
      */
     @Override
     public Customer update(Customer customer) {
-        return create(customer);
+        return null;
     }
 
     /**

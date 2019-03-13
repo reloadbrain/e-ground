@@ -27,7 +27,6 @@ public class GlobalExceptionController {
 
     private String errorBuilderMessage(Exception exception) {
         log.error("ERROR: ", exception);
-
         return ERROR_PREFIX + exception.getMessage();
     }
 }

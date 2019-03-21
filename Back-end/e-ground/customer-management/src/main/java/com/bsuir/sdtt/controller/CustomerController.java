@@ -15,8 +15,8 @@ import java.util.UUID;
 /**
  * Class of Customer REST Controller. Contains CRUD methods.
  *
- * @author Stsiapan Balashenka
- * @version 1.0
+ * @author Stsiapan Balashenka, Eugene Korenik
+ * @version 1.1
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -54,7 +54,8 @@ public class CustomerController {
         Customer customer = new Customer();
         modelMapper.map(customerDto, customer);
         CustomerDto customerDtoTemp = new CustomerDto();
-        modelMapper.map(customerService.create(customer), customerDtoTemp);
+        customer = customerService.create(customer);
+        modelMapper.map(customer, customerDtoTemp);
         return customerDtoTemp;
     }
 
@@ -90,12 +91,26 @@ public class CustomerController {
      * @param customerDto updated customer that needs to save
      * @return updated and saved customer
      */
-    @PutMapping
+    @PutMapping(headers = "action=updateInfo")
     public CustomerDto update(@Validated @RequestBody CustomerDto customerDto) {
         Customer customer = new Customer();
         modelMapper.map(customerDto, customer);
         CustomerDto customerDtoTemp = new CustomerDto();
         modelMapper.map(customerService.update(customer), customerDtoTemp);
+        return customerDtoTemp;
+    }
+
+    /**
+     * Method that update user password
+      *@param customerDto customer dto with updated password
+     * @return customer with updated password
+     */
+    @PutMapping(headers = "action=updatePassword")
+    public CustomerDto updatePassword(@Validated @RequestBody CustomerDto customerDto) {
+        Customer customer = new Customer();
+        modelMapper.map(customerDto, customer);
+        CustomerDto customerDtoTemp = new CustomerDto();
+        modelMapper.map(customerService.updatePassword(customer), customerDtoTemp);
         return customerDtoTemp;
     }
 

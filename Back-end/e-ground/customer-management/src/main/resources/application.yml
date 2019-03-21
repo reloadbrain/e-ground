@@ -2,14 +2,10 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer-management
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: 1234
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-<<<<<<< HEAD
-      ddl-auto: create
-=======
-      ddl-auto: create-drop
->>>>>>> 9a6cef07cd1f440343e01b0a27b58250410d40a1
+      ddl-auto: update

@@ -2,7 +2,6 @@ package com.bsuir.sdtt.service.impl;
 
 import com.bsuir.sdtt.entity.Category;
 import com.bsuir.sdtt.entity.Offer;
-import com.bsuir.sdtt.exception.EntityNotFoundException;
 import com.bsuir.sdtt.repository.CategoryRepository;
 import com.bsuir.sdtt.repository.OfferRepository;
 import com.bsuir.sdtt.service.OfferService;
@@ -10,20 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
  * Class of offer service that allows you to work with offers and implements OfferService.
  *
- * @author Stsiapan Balashenka
- * @version 1.0
+ * @author Stsiapan Balashenka, Eugene Korenik
+ * @version 1.1
  */
 @Service
 @Transactional
 public class DefaultOfferService implements OfferService {
+
     private final OfferRepository offerRepository;
 
     private final CategoryRepository categoryRepository;
@@ -113,9 +115,12 @@ public class DefaultOfferService implements OfferService {
      * @return list of founded objects
      */
     @Override
-    public Offer findById(UUID id) {
-        return offerRepository.findById(id)
-                .orElseThrow(NullPointerException::new);
+    public Offer findById(UUID id) throws EntityNotFoundException {
+        Optional<Offer> offer = offerRepository.findById(id);
+        offer.orElseThrow(() -> {
+            throw new EntityNotFoundException("Offer with id = " + id.toString() + " not found");
+        });
+        return offer.get();
     }
 
     /**
@@ -135,7 +140,7 @@ public class DefaultOfferService implements OfferService {
      * @param id parameter to be searched
      */
     @Override
-    public void delete(UUID id) {
+    public void delete(UUID id) throws EntityNotFoundException {
         try {
             offerRepository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
@@ -151,13 +156,10 @@ public class DefaultOfferService implements OfferService {
      * @return updated Offer
      */
     @Override
-    public Offer changeCategory(UUID offerId, String category) {
-        Offer offer = offerRepository
-                .findById(offerId)
-                .orElseThrow(NullPointerException::new);
+    public Offer changeCategory(UUID offerId, String category) throws EntityNotFoundException {
+        Offer offer = findById(offerId);
         Category categoryByName = categoryRepository.findFirstByName(category);
         offer.setCategory(categoryByName);
-        Offer savedOffer = offerRepository.save(offer);
-        return savedOffer;
+        return offerRepository.save(offer);
     }
 }

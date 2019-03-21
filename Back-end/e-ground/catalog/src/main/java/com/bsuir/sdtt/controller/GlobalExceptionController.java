@@ -12,8 +12,8 @@ import javax.persistence.EntityNotFoundException;
  * @author Stsiapan Balashenka
  * @version 1.0
  */
-@ControllerAdvice(annotations = RestController.class)
 @Slf4j
+@ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionController {
     private static final String ERROR_PREFIX = "ERROR: ";
 
@@ -34,7 +34,6 @@ public class GlobalExceptionController {
 
     private String errorBuilderMessage(Exception exception) {
         log.error("ERROR: ", exception);
-
         return ERROR_PREFIX + exception.getMessage();
     }
 }

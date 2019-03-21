@@ -4,16 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 
 /**
  * Class of Controller Advice.
  *
- * @author Stsiapan Balashenka
- * @version 1.0
+ * @author Stsiapan Balashenka, Eugene Korenik
+ * @version 1.1
  */
-@ControllerAdvice(annotations = RestController.class)
 @Slf4j
+@ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionController {
     private static final String ERROR_PREFIX = "ERROR: ";
 
@@ -29,6 +30,13 @@ public class GlobalExceptionController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     private String handleException(Exception exception) {
+        return errorBuilderMessage(exception);
+    }
+
+
+    @ExceptionHandler(EntityExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    private String handleEntityExistsExcpetion(EntityExistsException exception) {
         return errorBuilderMessage(exception);
     }
 

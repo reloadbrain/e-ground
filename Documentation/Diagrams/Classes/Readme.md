@@ -4,7 +4,7 @@
 
 # Диаграмма классов Customer Management
 
-![CustomerManagement](https://raw.githubusercontent.com/steppbol/e-Ground/master/Documentation/Diagrams/Classes/CustomerManagement1.png)
+![CustomerManagement](https://raw.githubusercontent.com/steppbol/e-Ground/master/Documentation/Diagrams/Classes/CustomerManagement.png)
 
 # Диаграмма классов Favourite Item Management
 

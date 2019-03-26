@@ -11,9 +11,9 @@ spring:
       ddl-auto: update
     properties.hibernate.temp.use_jdbc_metadata_defaults: false
 logging:
-  file: logs/production_app.log
   pattern:
     file: "%d %-5level [%thread] %logger{0}: %msg%n"
     console: "%d %-5level [%thread] %logger{0}: %msg%n"
   level:
     com.bsuir.sdtt: DEBUG
+  file: logs/production_app.log

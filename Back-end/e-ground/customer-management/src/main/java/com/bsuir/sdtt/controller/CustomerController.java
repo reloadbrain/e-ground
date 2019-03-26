@@ -53,6 +53,7 @@ public class CustomerController {
      */
     @PostMapping
     public CustomerDto create(@Validated @RequestBody CustomerDto customerDto) {
+        log.debug("In create customer controller method");
         Customer customer = new Customer();
         modelMapper.map(customerDto, customer);
         CustomerDto customerDtoTemp = new CustomerDto();
@@ -69,6 +70,7 @@ public class CustomerController {
      */
     @GetMapping(path = "/{id}")
     public CustomerDto getById(@PathVariable("id") UUID id) {
+        log.debug("In getById customer controller method");
         CustomerDto customerDtoTemp = new CustomerDto();
         modelMapper.map(customerService.findById(id), customerDtoTemp);
         return customerDtoTemp;
@@ -81,6 +83,7 @@ public class CustomerController {
      */
     @GetMapping
     public List<CustomerDto> getAll() {
+        log.debug("In getAll customer controller method");
         List<CustomerDto> customersDtoTemp = new ArrayList<>();
         List<Customer> customers = customerService.findAll();
         toCustomersDtoList(customers, customersDtoTemp);
@@ -95,6 +98,7 @@ public class CustomerController {
      */
     @PutMapping(headers = "action=updateInfo")
     public CustomerDto update(@Validated @RequestBody CustomerDto customerDto) {
+        log.debug("In update customer controller method");
         Customer customer = new Customer();
         modelMapper.map(customerDto, customer);
         CustomerDto customerDtoTemp = new CustomerDto();
@@ -109,6 +113,7 @@ public class CustomerController {
      */
     @PutMapping(headers = "action=updatePassword")
     public CustomerDto updatePassword(@Validated @RequestBody CustomerDto customerDto) {
+        log.debug("In updatePassword customer controller method");
         Customer customer = new Customer();
         modelMapper.map(customerDto, customer);
         CustomerDto customerDtoTemp = new CustomerDto();
@@ -123,6 +128,7 @@ public class CustomerController {
      */
     @DeleteMapping(path = "/{id}")
     public void delete(@PathVariable("id") UUID id) {
+        log.debug("In delete customer controller method");
         customerService.delete(id);
     }
 

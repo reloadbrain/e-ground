@@ -101,6 +101,5 @@ public class DefaultCategoryService implements CategoryService {
         } catch (EmptyResultDataAccessException e) {
             throw new EntityNotFoundException(e.getMessage());
         }
-
     }
 }

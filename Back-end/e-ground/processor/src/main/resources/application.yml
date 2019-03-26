@@ -12,3 +12,10 @@ favourite-item-management:
   host: http://localhost
   port: 8083
   url: ${favourite-item-management.host}:${favourite-item-management.port}
+logging:
+  file: logs/production_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0}: %msg%n"
+    console: "%d %-5level [%thread] %logger{0}: %msg%n"
+  level:
+    com.bsuir.sdtt: DEBUG

@@ -3,6 +3,7 @@ package com.bsuir.sdtt.controller;
 import com.bsuir.sdtt.dto.CustomerDto;
 import com.bsuir.sdtt.entity.Customer;
 import com.bsuir.sdtt.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -18,6 +19,7 @@ import java.util.UUID;
  * @author Stsiapan Balashenka, Eugene Korenik
  * @version 1.1
  */
+@Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "api/v1/customer-management/customers")

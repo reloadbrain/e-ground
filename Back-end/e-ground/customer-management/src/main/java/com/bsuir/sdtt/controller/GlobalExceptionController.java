@@ -18,6 +18,7 @@ import javax.persistence.EntityNotFoundException;
 public class GlobalExceptionController {
     private static final String ERROR_PREFIX = "ERROR: ";
 
+
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody

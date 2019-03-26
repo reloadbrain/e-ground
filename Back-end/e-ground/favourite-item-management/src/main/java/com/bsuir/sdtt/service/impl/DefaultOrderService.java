@@ -73,7 +73,7 @@ public class DefaultOrderService implements OrderService {
     @Override
     public Order findById(UUID id) throws EntityNotFoundException {
         Optional<Order> order =  orderRepository.findById(id);
-        order.orElseThrow(()->{
+        order.<EntityNotFoundException>orElseThrow(()->{
             throw new EntityNotFoundException("Order with id = "
                     + id.toString() + " not found");
         });

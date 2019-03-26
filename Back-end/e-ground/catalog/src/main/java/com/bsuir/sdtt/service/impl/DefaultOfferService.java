@@ -13,7 +13,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -116,11 +115,9 @@ public class DefaultOfferService implements OfferService {
      */
     @Override
     public Offer findById(UUID id) throws EntityNotFoundException {
-        Optional<Offer> offer = offerRepository.findById(id);
-        offer.orElseThrow(() -> {
+        return offerRepository.findById(id).<EntityNotFoundException>orElseThrow(() -> {
             throw new EntityNotFoundException("Offer with id = " + id.toString() + " not found");
         });
-        return offer.get();
     }
 
     /**

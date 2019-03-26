@@ -57,12 +57,10 @@ public class DefaultCategoryService implements CategoryService {
      */
     @Override
     public Category findById(UUID id) throws EntityNotFoundException {
-        Optional<Category> category = categoryRepository.findById(id);
-        category.orElseThrow(()->{
+        return categoryRepository.findById(id).<EntityNotFoundException>orElseThrow(()->{
             throw new EntityNotFoundException("Category with id = "
                     + id.toString() + " not found.");
         });
-        return category.get();
     }
 
     /**

@@ -1,0 +1,12 @@
+.fill-space {
+  flex: 1 1 auto;
+}
+
+
+mat-toolbar {
+  background-color: #787f7b;
+}
+
+p {
+  color: white;
+}

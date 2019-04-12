@@ -5,6 +5,6 @@ e-Ground is online trading platform. </br>
 - [Source Code Back-end](https://github.com/steppbol/e-Ground/tree/dev-backend).
 - [Documentation(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/README.md).
 - [Desk(RU)](https://trello.com/b/WMbNUcEG/e-ground).
-- [Architecture(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/Architecture.md).
-- [Pair programming report(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/PairProgramming.md).
-- [Technical Debt report(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/TechnicalDebt(RU).md)
+- [Architecture(report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/Architecture.md).
+- [Pair programming(report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/PairProgramming.md).
+- [Technical Debt(report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/TechnicalDebt(RU).md).

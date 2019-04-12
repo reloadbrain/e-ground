@@ -8,3 +8,4 @@ e-Ground is online trading platform. </br>
 - [Architecture (report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/Architecture.md).
 - [Pair programming (report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/PairProgramming.md).
 - [Technical Debt (report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/TechnicalDebt(RU).md).
+- [Improvement UI/UX(report)](https://github.com/steppbol/e-Ground/blob/master/Documentation/ImprovementUX.md).

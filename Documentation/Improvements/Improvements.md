@@ -46,8 +46,4 @@
 ![Добавление товара до](stuckCreateOfferButtonBefore.jpg)  
 ### После
 ![Добавление товара после](stuckCreateOfferButtonAfter.jpg) 
-## Добавление товара
-### До
-![Добавление товара до](stuckCreateOfferButtonBefore.jpg)  
-### После
-![Добавление товара после](stuckCreateOfferButtonAfter.jpg) 
+

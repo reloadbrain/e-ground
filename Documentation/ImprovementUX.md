@@ -45,4 +45,4 @@
 
 ### Тикеты
 - Улучшение UI/UX - [EG-1114]
-- Скриншоты улучшений (![ссылка](https://github.com/steppbol/e-Ground/blob/master/Documentation/Improvements/Readme.md))
+- Скриншоты улучшений ([ссылка](https://github.com/steppbol/e-Ground/blob/master/Documentation/Improvements/Readme.md))

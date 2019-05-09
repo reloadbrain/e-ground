@@ -10,7 +10,8 @@ e-Ground is online trading platform. </br>
 - [Technical Debt (report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/TechnicalDebt(RU).md).
 - [Improvement UI/UX(report)(RU)](https://github.com/steppbol/e-Ground/blob/master/Documentation/ImprovementUX.md).
 
-======
+------
+
 - Catalog: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-catalog), [Heroku](https://eg-catalog.herokuapp.com),
 - Customer Management: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-customer-management), [Heroku](https://eg-customer-management.herokuapp.com/),
 - Favourite Item Management: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-favourite-item-management), [Heroku](https://eg-favourite-item-management.herokuapp.com/),

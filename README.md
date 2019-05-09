@@ -15,6 +15,6 @@ e-Ground is online trading platform. </br>
 - Catalog: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-catalog), [Heroku](https://eg-catalog.herokuapp.com),
 - Customer Management: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-customer-management), [Heroku](https://eg-customer-management.herokuapp.com/),
 - Favourite Item Management: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-favourite-item-management), [Heroku](https://eg-favourite-item-management.herokuapp.com/),
-- Processor Management: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-processor), [Heroku](https://eg-processor.herokuapp.com/).
+- Processor: [GitHub](https://github.com/steppbol/e-Ground/tree/dev-processor), [Heroku](https://eg-processor.herokuapp.com/).
 
 ###### To see the API of each service, use the "swagger-ui.html".

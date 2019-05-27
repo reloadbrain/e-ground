@@ -3,4 +3,4 @@
 ### e-Ground is online trading platform. 
 - [Backend code](https://github.com/steppbol/e-Ground/tree/master/e-ground-backend).
 - [Frontend code](https://github.com/steppbol/e-Ground/tree/master/e-ground-frontend).
-- [Desk(RU)](https://trello.com/b/WMbNUcEG/e-ground).
+- [Dashboard(RU)](https://trello.com/b/WMbNUcEG/e-ground).

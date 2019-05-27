@@ -2,5 +2,5 @@
 ### The current version: 1.01. 
 ### e-Ground is online trading platform. 
 - [Backend code](https://github.com/steppbol/e-Ground/tree/master/e-ground-backend).
-- [Frontend code]((https://github.com/steppbol/e-Ground/tree/master/e-ground-frontend).
+- [Frontend code](https://github.com/steppbol/e-Ground/tree/master/e-ground-frontend).
 - [Desk(RU)](https://trello.com/b/WMbNUcEG/e-ground).

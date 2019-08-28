@@ -39,7 +39,7 @@
   
 <a name="diagrams"></a>
 ### 1.6 Диаграммы
-  С диаграммами приложения можно ознакомиться по следующей [ссылке](https://github.com/steppbol/e-Ground/tree/master/Documentation/Diagrams)
+  С диаграммами приложения можно ознакомиться по следующей [ссылке](https://github.com/steppbol/e-Ground/tree/master/e-ground-documentation/Diagrams)
 
 <a name="analysis"></a>
 ## 2. Анализ архитектуры

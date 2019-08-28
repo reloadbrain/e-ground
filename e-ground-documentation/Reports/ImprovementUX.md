@@ -50,4 +50,4 @@
 - Исправить верстку главного окна - [EG-1117];
 - Исправить страницу редактирования профиля - [EG-1118];
 - Заполнение footer'a полезными ссылками - [EG-1119].
-- Скриншоты улучшений ([ссылка](https://github.com/steppbol/e-Ground/blob/master/Documentation/Improvements/Readme.md))
+- Скриншоты улучшений ([ссылка](https://github.com/steppbol/e-Ground/blob/master/e-ground-documentation/Improvements/Readme.md))
